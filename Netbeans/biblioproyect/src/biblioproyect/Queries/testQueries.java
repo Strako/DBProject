@@ -9,5 +9,5 @@ package biblioproyect.Queries;
  * @author armandoisaihernandezibarra
  */
 public class testQueries {
-    
+    int anios;
 }
