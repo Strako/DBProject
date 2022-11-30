@@ -181,7 +181,7 @@ CREATE TABLE `Usuarios` (
   `Clave` varchar(30) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Usuario` (`Usuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +190,7 @@ CREATE TABLE `Usuarios` (
 
 LOCK TABLES `Usuarios` WRITE;
 /*!40000 ALTER TABLE `Usuarios` DISABLE KEYS */;
-INSERT INTO `Usuarios` VALUES (1,'Uno','Dos'),(3,'Strako','Mayuscula12.');
+INSERT INTO `Usuarios` VALUES (1,'Uno','Dos'),(3,'Strako','Mayuscula12.'),(5,'Zul','123');
 /*!40000 ALTER TABLE `Usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -203,4 +203,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-30 11:24:09
+-- Dump completed on 2022-11-30 11:56:36
