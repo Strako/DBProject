@@ -115,6 +115,29 @@ INSERT INTO `Libros` VALUES (5,'La habitacion cerrada','Paul Auster','1986-02-16
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Log_Update`
+--
+
+DROP TABLE IF EXISTS `Log_Update`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Log_Update` (
+  `ID_Log` int(11) NOT NULL AUTO_INCREMENT,
+  `Log` varchar(500) NOT NULL,
+  PRIMARY KEY (`ID_Log`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Log_Update`
+--
+
+LOCK TABLES `Log_Update` WRITE;
+/*!40000 ALTER TABLE `Log_Update` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Log_Update` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Prestamos`
 --
 
@@ -180,4 +203,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-29 12:25:41
+-- Dump completed on 2022-11-30 11:24:09
