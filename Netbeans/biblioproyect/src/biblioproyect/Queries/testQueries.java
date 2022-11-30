@@ -10,4 +10,5 @@ package biblioproyect.Queries;
  */
 public class testQueries {
     int anios;
+    int prueba;
 }
