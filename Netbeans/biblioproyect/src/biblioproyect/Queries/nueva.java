@@ -4,17 +4,19 @@
  */
 package biblioproyect.Queries;
 
+import biblioproyect.Queries.testQueries;
+
 /**
  *
  * @author armandoisaihernandezibarra
  */
-public class testQueries {
+public class nueva {
 
-    public static boolean login(String usuario, String clave) {
-        boolean resultado;
-        if (usuario.equals("Zul") && clave.equals("123")) {
-            resultado = true;
-        } else resultado = false;
-        return resultado;
+
+    public static void main(String[] args) {
+            testQueries validacion = new testQueries();
+            System.out.println(validacion.login("Zul","13"));
+
     }
+
 }
