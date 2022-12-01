@@ -5,6 +5,10 @@
  */
 package biblioproyect;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Hp Omen
@@ -16,6 +20,18 @@ public class modulos extends javax.swing.JFrame {
      */
     public modulos() {
         initComponents();
+        
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/books.png"));
+        btnLibros.setIcon(new ImageIcon(img.getScaledInstance(btnLibros.getWidth(),btnLibros.getHeight(), Image.SCALE_SMOOTH)));
+        this.setIconImage(img);
+        
+        Image imgA = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/alum.png"));
+        btnAlumnos.setIcon(new ImageIcon(imgA.getScaledInstance(btnAlumnos.getWidth(),btnAlumnos.getHeight(), Image.SCALE_SMOOTH)));
+        this.setIconImage(imgA);
+        
+        Image imgP = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/prestamo.png"));
+        btnPrestamos.setIcon(new ImageIcon(imgP.getScaledInstance(btnPrestamos.getWidth(),btnPrestamos.getHeight(), Image.SCALE_SMOOTH)));
+        this.setIconImage(imgP);
         this.setLocationRelativeTo(null);
     }
 
@@ -28,33 +44,20 @@ public class modulos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        btnRegresar = new javax.swing.JButton();
+        lblAlumnos = new javax.swing.JLabel();
+        lblPrestamos = new javax.swing.JLabel();
+        lblLibros3 = new javax.swing.JLabel();
         btnPrestamos = new javax.swing.JButton();
         btnLibros = new javax.swing.JButton();
         btnAlumnos = new javax.swing.JButton();
-        btnRegresar = new javax.swing.JButton();
+        btnRegistro = new javax.swing.JButton();
+        lblRegistro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnPrestamos.setText("Prestamos");
-        btnPrestamos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrestamosActionPerformed(evt);
-            }
-        });
-
-        btnLibros.setText("Libros");
-        btnLibros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLibrosActionPerformed(evt);
-            }
-        });
-
-        btnAlumnos.setText("Alumnos");
-        btnAlumnos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlumnosActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(java.awt.Color.orange);
 
         btnRegresar.setText("REGRESAR");
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -63,34 +66,110 @@ public class modulos extends javax.swing.JFrame {
             }
         });
 
+        lblAlumnos.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        lblAlumnos.setText("Alumnos");
+
+        lblPrestamos.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        lblPrestamos.setText("Prestamos");
+
+        lblLibros3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        lblLibros3.setText("Libros");
+
+        btnPrestamos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrestamosActionPerformed(evt);
+            }
+        });
+
+        btnLibros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLibrosActionPerformed(evt);
+            }
+        });
+
+        btnAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlumnosActionPerformed(evt);
+            }
+        });
+
+        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistroActionPerformed(evt);
+            }
+        });
+
+        lblRegistro.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        lblRegistro.setText("Registro");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblAlumnos)
+                        .addGap(105, 105, 105)
+                        .addComponent(lblLibros3)
+                        .addGap(39, 39, 39))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(btnLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(lblPrestamos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblRegistro)
+                        .addGap(25, 25, 25)))
+                .addGap(188, 188, 188))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(btnRegresar)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLibros3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnLibros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPrestamos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblRegistro, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addComponent(btnRegresar)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(btnAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(btnLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(btnRegresar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(btnRegresar)
-                .addGap(19, 19, 19))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -120,6 +199,10 @@ public class modulos extends javax.swing.JFrame {
         mp.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnPrestamosActionPerformed
+
+    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +243,12 @@ public class modulos extends javax.swing.JFrame {
     private javax.swing.JButton btnAlumnos;
     private javax.swing.JButton btnLibros;
     private javax.swing.JButton btnPrestamos;
+    private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblAlumnos;
+    private javax.swing.JLabel lblLibros3;
+    private javax.swing.JLabel lblPrestamos;
+    private javax.swing.JLabel lblRegistro;
     // End of variables declaration//GEN-END:variables
 }
