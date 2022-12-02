@@ -93,7 +93,7 @@ CREATE TABLE `Info_Alumnos` (
 
 LOCK TABLES `Info_Alumnos` WRITE;
 /*!40000 ALTER TABLE `Info_Alumnos` DISABLE KEYS */;
-INSERT INTO `Info_Alumnos` VALUES (1,2);
+INSERT INTO `Info_Alumnos` VALUES (1,12);
 /*!40000 ALTER TABLE `Info_Alumnos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -117,7 +117,7 @@ CREATE TABLE `Info_Libros` (
 
 LOCK TABLES `Info_Libros` WRITE;
 /*!40000 ALTER TABLE `Info_Libros` DISABLE KEYS */;
-INSERT INTO `Info_Libros` VALUES (1,1);
+INSERT INTO `Info_Libros` VALUES (1,5);
 /*!40000 ALTER TABLE `Info_Libros` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +191,7 @@ CREATE TABLE `Log_Update` (
   `Usuario` varchar(100) NOT NULL,
   `Log` varchar(500) NOT NULL,
   PRIMARY KEY (`ID_Log`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +200,7 @@ CREATE TABLE `Log_Update` (
 
 LOCK TABLES `Log_Update` WRITE;
 /*!40000 ALTER TABLE `Log_Update` DISABLE KEYS */;
-INSERT INTO `Log_Update` VALUES (1,'root@localhost','Se modificaron los registros: (5,5,2022-11-14,2022-11-15,5) por: (5,5,2022-11-11,2022-11-15,5)'),(2,'root@localhost','Se modificaron los registros: (5,5,2022-11-11,2022-11-15,5) por: (5,5,2022-11-10,2022-11-15,5)'),(3,'root@localhost','Se modificaron los registros: (5,5,2022-11-10,2022-11-15,5) por: (5,5,2020-11-11,2022-11-15,5)');
+INSERT INTO `Log_Update` VALUES (1,'root@localhost','Se modificaron los registros: (5,5,2022-11-14,2022-11-15,5) por: (5,5,2022-11-11,2022-11-15,5)'),(2,'root@localhost','Se modificaron los registros: (5,5,2022-11-11,2022-11-15,5) por: (5,5,2022-11-10,2022-11-15,5)'),(3,'root@localhost','Se modificaron los registros: (5,5,2022-11-10,2022-11-15,5) por: (5,5,2020-11-11,2022-11-15,5)'),(4,'root@localhost','Se modificaron los registros: (5,5,2020-11-11,2022-11-15,5) por: (5,5,2022-11-01,2022-11-15,5)  2022-12-02 11:00:00');
 /*!40000 ALTER TABLE `Log_Update` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +231,7 @@ CREATE TABLE `Prestamos` (
 
 LOCK TABLES `Prestamos` WRITE;
 /*!40000 ALTER TABLE `Prestamos` DISABLE KEYS */;
-INSERT INTO `Prestamos` VALUES (5,5,'2020-11-11','2022-11-15',5),(10,5,'2022-11-11','2022-11-12',5),(12,6,'2022-11-11','2022-11-12',5);
+INSERT INTO `Prestamos` VALUES (5,5,'2022-11-01','2022-11-15',5),(10,5,'2022-11-11','2022-11-12',5),(12,6,'2022-11-11','2022-11-12',5);
 /*!40000 ALTER TABLE `Prestamos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -239,11 +239,11 @@ UNLOCK TABLES;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER LogTrigger AFTER UPDATE ON Prestamos FOR EACH ROW INSERT INTO Log_Update (Usuario, Log) VALUES (user(), CONCAT('Se modificaron los registros: ','(', OLD.ID_Prestamo,',',OLD.Num_Control,',',OLD.Fecha_Retiro,',',OLD.Fecha_Entrega,',',OLD.Num_Libro,') por: (', NEW.ID_Prestamo,',',NEW.Num_Control,',',NEW.Fecha_Retiro,',',NEW.Fecha_Entrega,',',NEW.Num_Libro,')')) */;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `LogTrigger` AFTER UPDATE ON `Prestamos` FOR EACH ROW INSERT INTO Log_Update (Usuario, Log) VALUES (user(), CONCAT('Se modificaron los registros: ','(', OLD.ID_Prestamo,',',OLD.Num_Control,',',OLD.Fecha_Retiro,',',OLD.Fecha_Entrega,',',OLD.Num_Libro,') por: (', NEW.ID_Prestamo,',',NEW.Num_Control,',',NEW.Fecha_Retiro,',',NEW.Fecha_Entrega,',',NEW.Num_Libro,')  ', CURRENT_DATE(),' ' , CURRENT_TIME() )) */;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -285,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-01 11:29:50
+-- Dump completed on 2022-12-02 11:25:54
