@@ -37,11 +37,6 @@ public class modulos extends javax.swing.JFrame {
         this.setIconImage(imgP);
         this.setLocationRelativeTo(null);
         
-        Image imgR = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/registro.png"));
-        btnRegistro.setIcon(new ImageIcon(imgR.getScaledInstance(btnRegistro.getWidth(),btnRegistro.getHeight(), Image.SCALE_SMOOTH)));
-        this.setIconImage(imgR);
-        this.setLocationRelativeTo(null);
-        
     }
 
     /**
