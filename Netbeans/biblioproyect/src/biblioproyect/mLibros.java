@@ -221,11 +221,11 @@ public class mLibros extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
-        try{
-        getLibros.getLibros(connection.getCon(), model);
-        select.getCantAlumnos(connection.getCon(), lblCantLib, "Info_Libros");
+        try {
+            getLibros.getLibros(connection.getCon(), model);
+            select.getCantAlumnos(connection.getCon(), lblCantLib, "Info_Libros");
 
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }//GEN-LAST:event_btnAceptarActionPerformed

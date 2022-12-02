@@ -15,7 +15,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author s404
  */
-public  class select {
+public class select {
+
     public static void getCantAlumnos(Connection con, JLabel label, String Tabla) throws SQLException {
         try {
             String sql = "SELECT * FROM " + Tabla;
@@ -27,21 +28,8 @@ public  class select {
         } catch (Exception e) {
             System.out.println(e);
         }
+        con.close();
 
     }
-    
-    public static String simpleSelect(Connection con, String querie) throws SQLException {
-            String response = "";
-        try {
-            String sql = querie;
-            Statement statement = con.createStatement();
-            ResultSet result = statement.executeQuery(sql);
-            response = result.getString(1);
 
-    }catch(Exception e){
-            System.out.println(e);
-        }
-        return response;
-    } 
-    
 }

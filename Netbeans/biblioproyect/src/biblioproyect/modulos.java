@@ -36,6 +36,7 @@ public class modulos extends javax.swing.JFrame {
         btnPrestamos.setIcon(new ImageIcon(imgP.getScaledInstance(btnPrestamos.getWidth(),btnPrestamos.getHeight(), Image.SCALE_SMOOTH)));
         this.setIconImage(imgP);
         this.setLocationRelativeTo(null);
+        
     }
 
     /**

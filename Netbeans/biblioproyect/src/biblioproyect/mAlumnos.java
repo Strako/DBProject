@@ -313,6 +313,6 @@ public class mAlumnos extends javax.swing.JFrame {
     private javax.swing.JTextField txtNumeroControl;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
-    DefaultTableModel model = new DefaultTableModel(); 
+    DefaultTableModel model = new DefaultTableModel();
 
 }

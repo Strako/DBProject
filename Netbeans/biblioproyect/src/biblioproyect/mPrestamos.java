@@ -322,7 +322,7 @@ public class mPrestamos extends javax.swing.JFrame {
                 } catch (SQLException ex) {
                     Logger.getLogger(mPrestamos.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            
+
             }
         });
     }
