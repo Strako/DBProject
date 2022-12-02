@@ -41,8 +41,8 @@ public class currentUser {
         }
         read();
     }
-    
-    public static List<String> read () throws IOException{
+
+    public static List<String> read() throws IOException {
         List<String> cache = Arrays.asList();
         cache = Files.readAllLines(Paths.get("currentUser.cache"));
         return cache;

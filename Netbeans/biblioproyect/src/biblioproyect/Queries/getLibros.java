@@ -25,7 +25,8 @@ public class getLibros {
             model.getDataVector().removeAllElements();
             model.fireTableDataChanged();
             while (result.next()) {
-                model.addRow(new Object[]{result.getString(1), result.getString(2), result.getString(3), result.getString(4)});
+                model.addRow(new Object[]{result.getString(1), result.getString(2),
+                    result.getString(3), result.getString(4)});
             }
         } catch (Exception e) {
             System.out.println(e);

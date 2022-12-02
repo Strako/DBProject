@@ -18,7 +18,9 @@ public class connection {
     public static Connection getCon() throws IOException {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/biblio?" + "user="+currentUser.read().get(0)+"&password="+currentUser.read().get(1));
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/biblio?"
+                    + "user=" + currentUser.read().get(0) + "&password="
+                    + currentUser.read().get(1));
 
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
