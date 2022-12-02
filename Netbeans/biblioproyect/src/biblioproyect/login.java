@@ -142,21 +142,21 @@ public class login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        modulos mds = new modulos();
+        mds.setVisible(true);
+        this.dispose();
 
-        if (currentUser.getCon(txtUsuario.getText(), txtContraseña.getText()) != null) {
-            modulos mds = new modulos();
-            mds.setVisible(true);
-            try {
-                currentUser.write(txtUsuario.getText(), txtContraseña.getText());
-            } catch (IOException ex) {
-                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            this.dispose();
-            
-        } else {
-            lblStatus.setText("Datos invalidos");
-        }
-
+        /**
+         * if (currentUser.getCon(txtUsuario.getText(), txtContraseña.getText())
+         * != null) { modulos mds = new modulos(); mds.setVisible(true); try {
+         * currentUser.write(txtUsuario.getText(), txtContraseña.getText()); }
+         * catch (IOException ex) {
+         * Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+         * } this.dispose();
+         *
+         * } else { lblStatus.setText("Datos invalidos"); }
+*
+         */
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 

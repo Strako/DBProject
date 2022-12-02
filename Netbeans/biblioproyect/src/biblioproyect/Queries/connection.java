@@ -17,7 +17,7 @@ public class connection {
 
     public static Connection getCon() throws IOException {
         Connection conn = null;
-        try {
+      /**  try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/biblio?"
                     + "user=" + currentUser.read().get(0) + "&password="
                     + currentUser.read().get(1));
@@ -27,6 +27,7 @@ public class connection {
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         }
+     **/   
         return conn;
     }
 
