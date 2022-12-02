@@ -5,9 +5,13 @@
  */
 package biblioproyect;
 
+import biblioproyect.Queries.currentUser;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -24,9 +28,9 @@ public class login extends javax.swing.JFrame {
         this.setTitle("LOGIN");
         //Color colorRosa=new Color(255, 175, 175);
         getContentPane().setBackground(Color.ORANGE);
-        
+
         Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/log.png"));
-        lblLogo.setIcon(new ImageIcon(img.getScaledInstance(lblLogo.getWidth(),lblLogo.getHeight(), Image.SCALE_SMOOTH)));
+        lblLogo.setIcon(new ImageIcon(img.getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_SMOOTH)));
         this.setIconImage(img);
         this.setLocationRelativeTo(null);
     }
@@ -47,6 +51,7 @@ public class login extends javax.swing.JFrame {
         lblLogo = new javax.swing.JLabel();
         btnIngresar = new javax.swing.JButton();
         btnSalirLogin = new javax.swing.JButton();
+        lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 0));
@@ -57,7 +62,13 @@ public class login extends javax.swing.JFrame {
         lblContraseña.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
         lblContraseña.setText("Contraseña");
 
-        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/log.png"))); // NOI18N
+        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraseñaActionPerformed(evt);
+            }
+        });
+
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/log.png"))); // NOI18N
 
         btnIngresar.setBackground(new java.awt.Color(153, 204, 255));
         btnIngresar.setFont(new java.awt.Font("Arial Narrow", 1, 14)); // NOI18N
@@ -85,9 +96,6 @@ public class login extends javax.swing.JFrame {
                 .addContainerGap(65, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(133, 133, 133))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUsuario)
                             .addComponent(lblContraseña))
@@ -101,7 +109,12 @@ public class login extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnIngresar)
-                        .addGap(140, 140, 140))))
+                        .addGap(140, 140, 140))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(133, 133, 133))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +123,9 @@ public class login extends javax.swing.JFrame {
                 .addComponent(btnSalirLogin)
                 .addGap(7, 7, 7)
                 .addComponent(lblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(5, 5, 5)
+                .addComponent(lblStatus)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario)
                     .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -120,23 +135,38 @@ public class login extends javax.swing.JFrame {
                     .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(btnIngresar)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        modulos mds = new modulos();
-        mds.setVisible(true);
-        
-        this.dispose();
-        
+
+        if (currentUser.getCon(txtUsuario.getText(), txtContraseña.getText()) != null) {
+            modulos mds = new modulos();
+            mds.setVisible(true);
+            try {
+                currentUser.write(txtUsuario.getText(), txtContraseña.getText());
+            } catch (IOException ex) {
+                Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.dispose();
+            
+        } else {
+            lblStatus.setText("Datos invalidos");
+        }
+
+
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnSalirLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirLoginActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirLoginActionPerformed
+
+    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseñaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,6 +208,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JButton btnSalirLogin;
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;

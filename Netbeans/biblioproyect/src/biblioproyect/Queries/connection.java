@@ -4,6 +4,7 @@
  */
 package biblioproyect.Queries;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -14,10 +15,10 @@ import java.sql.SQLException;
  */
 public class connection {
 
-    public static Connection getCon() {
+    public static Connection getCon() throws IOException {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/biblio?" + "user=strako&password=Mayuscula12.");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/biblio?" + "user="+currentUser.read().get(0)+"&password="+currentUser.read().get(1));
 
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
