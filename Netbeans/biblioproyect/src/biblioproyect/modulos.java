@@ -37,6 +37,11 @@ public class modulos extends javax.swing.JFrame {
         this.setIconImage(imgP);
         this.setLocationRelativeTo(null);
         
+        Image imgAud = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/auditoria.png"));
+        btnAuditoria.setIcon(new ImageIcon(imgAud.getScaledInstance(btnAuditoria.getWidth(),btnAuditoria.getHeight(), Image.SCALE_SMOOTH)));
+        this.setIconImage(imgAud);
+        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -56,7 +61,7 @@ public class modulos extends javax.swing.JFrame {
         btnPrestamos = new javax.swing.JButton();
         btnLibros = new javax.swing.JButton();
         btnAlumnos = new javax.swing.JButton();
-        btnRegistro = new javax.swing.JButton();
+        btnAuditoria = new javax.swing.JButton();
         lblRegistro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,14 +102,14 @@ public class modulos extends javax.swing.JFrame {
             }
         });
 
-        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
+        btnAuditoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistroActionPerformed(evt);
+                btnAuditoriaActionPerformed(evt);
             }
         });
 
         lblRegistro.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-        lblRegistro.setText("Registro");
+        lblRegistro.setText("Auditoria");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,7 +142,7 @@ public class modulos extends javax.swing.JFrame {
                                         .addComponent(btnLibros, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(39, 39, 39)
-                                        .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(btnAuditoria, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(188, 188, 188))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(212, 212, 212)
@@ -161,7 +166,7 @@ public class modulos extends javax.swing.JFrame {
                     .addComponent(lblRegistro, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAuditoria, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPrestamos, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegresar)
@@ -222,9 +227,16 @@ public class modulos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnPrestamosActionPerformed
 
-    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistroActionPerformed
+    private void btnAuditoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAuditoriaActionPerformed
+        mAuditoria mAud = null;
+        try {
+            mAud = new mAuditoria();
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        mAud.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnAuditoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,9 +275,9 @@ public class modulos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlumnos;
+    private javax.swing.JButton btnAuditoria;
     private javax.swing.JButton btnLibros;
     private javax.swing.JButton btnPrestamos;
-    private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAlumnos;
