@@ -8,6 +8,7 @@ package biblioproyect;
 import biblioproyect.Queries.connection;
 import biblioproyect.Queries.getAlumnos;
 import biblioproyect.Queries.getLibros;
+import biblioproyect.Queries.select;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -33,6 +34,7 @@ public class mLibros extends javax.swing.JFrame {
         model.addColumn("Autor");
         model.addColumn("Fecha_Editado");
         getLibros.getLibros(connection.getCon(), model);
+        select.getCantAlumnos(connection.getCon(), lblCantLib, "Info_Libros");
 
     }
 
@@ -61,6 +63,7 @@ public class mLibros extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         txtTelefono = new javax.swing.JTextField();
         btnAceptar = new javax.swing.JButton();
+        lblCantLib = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,11 +118,14 @@ public class mLibros extends javax.swing.JFrame {
             }
         });
 
+        lblCantLib.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        lblCantLib.setForeground(new java.awt.Color(0, 0, 0));
+        lblCantLib.setText("XX");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -129,7 +135,9 @@ public class mLibros extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(564, 564, 564)
                         .addComponent(btnAceptar)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblCantLib)
+                        .addGap(22, 22, 22))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 118, Short.MAX_VALUE)
                         .addComponent(lblNumeroLibro)
@@ -150,7 +158,10 @@ public class mLibros extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(lblFechaEditado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFechaEditado, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtFechaEditado, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -175,10 +186,13 @@ public class mLibros extends javax.swing.JFrame {
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFechaEditado)
                     .addComponent(txtFechaEditado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(btnAceptar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAceptar)
+                    .addComponent(lblCantLib))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -209,6 +223,8 @@ public class mLibros extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
         getLibros.getLibros(connection.getCon(), model);
+        select.getCantAlumnos(connection.getCon(), lblCantLib, "Info_Libros");
+
         }catch(Exception e){
             System.out.println(e);
         }
@@ -261,6 +277,7 @@ public class mLibros extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableLibros;
     private javax.swing.JLabel lblAutor;
+    private javax.swing.JLabel lblCantLib;
     private javax.swing.JLabel lblFechaEditado;
     private javax.swing.JLabel lblNumeroLibro;
     private javax.swing.JLabel lblTelefono;

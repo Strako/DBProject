@@ -7,6 +7,7 @@ package biblioproyect;
 
 import biblioproyect.Queries.connection;
 import biblioproyect.Queries.getAlumnos;
+import biblioproyect.Queries.select;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -35,7 +36,7 @@ public class mAlumnos extends javax.swing.JFrame {
         model.addColumn("Fecha_Insc");
         TableColumnModel tcm = jTableAlumnos.getColumnModel();
         getAlumnos.getAlumnos(connection.getCon(), model);
-
+        select.getCantAlumnos(connection.getCon(), lblCantAlum, "Info_Alumnos");
 
     }
 
@@ -67,6 +68,7 @@ public class mAlumnos extends javax.swing.JFrame {
         btnAceptar = new javax.swing.JButton();
         jScrollPaneAlumnos = new javax.swing.JScrollPane();
         jTableAlumnos = new javax.swing.JTable();
+        lblCantAlum = new javax.swing.JLabel();
 
         jTextField3.setText("jTextField1");
 
@@ -124,6 +126,10 @@ public class mAlumnos extends javax.swing.JFrame {
         jTableAlumnos.setShowGrid(true);
         jScrollPaneAlumnos.setViewportView(jTableAlumnos);
 
+        lblCantAlum.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        lblCantAlum.setForeground(new java.awt.Color(0, 0, 0));
+        lblCantAlum.setText("XX");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -161,7 +167,9 @@ public class mAlumnos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(583, 583, 583)
                 .addComponent(btnAceptar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCantAlum)
+                .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,9 +190,15 @@ public class mAlumnos extends javax.swing.JFrame {
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblFechaInscripcion)
                     .addComponent(txtFechaInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(btnAceptar)
-                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btnAceptar)
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCantAlum)
+                        .addGap(18, 18, 18)))
                 .addComponent(jScrollPaneAlumnos, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
         );
 
@@ -230,6 +244,8 @@ public class mAlumnos extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             getAlumnos.getAlumnos(connection.getCon(), model);
+            select.getCantAlumnos(connection.getCon(), lblCantAlum, "Info_Alumnos");
+
         } catch (SQLException ex) {
             Logger.getLogger(mAlumnos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -285,6 +301,7 @@ public class mAlumnos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneAlumnos;
     private javax.swing.JTable jTableAlumnos;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblCantAlum;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblFechaInscripcion;
     private javax.swing.JLabel lblNombre;
