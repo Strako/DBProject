@@ -17,7 +17,7 @@ public class connection {
     public static Connection getCon() {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/biblio?" + "user=root&password=01110110");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/biblio?" + "user=strako&password=Mayuscula12.");
 
         } catch (SQLException ex) {
             System.out.println("SQLException: " + ex.getMessage());
