@@ -192,8 +192,8 @@ public class modulos extends javax.swing.JFrame {
         mAlumnos ma = null;
         try {
             ma = new mAlumnos();
-        } catch (SQLException ex) {
-            Logger.getLogger(modulos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(Exception e){
+            System.out.println(e);
         }
         ma.setVisible(true);
         this.dispose();
@@ -203,8 +203,8 @@ public class modulos extends javax.swing.JFrame {
         mLibros ml = null;
         try {
             ml = new mLibros();
-        } catch (SQLException ex) {
-            Logger.getLogger(modulos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(Exception e){
+            System.out.println(e);
         }
         ml.setVisible(true);
         this.dispose();
@@ -215,8 +215,8 @@ public class modulos extends javax.swing.JFrame {
         mPrestamos mp = null;
         try {
             mp = new mPrestamos();
-        } catch (SQLException ex) {
-            Logger.getLogger(modulos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(Exception e){
+            System.out.println(e);
         }
         mp.setVisible(true);
         this.dispose();

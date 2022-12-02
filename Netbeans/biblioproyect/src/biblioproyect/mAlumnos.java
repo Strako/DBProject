@@ -9,6 +9,7 @@ import biblioproyect.Queries.connection;
 import biblioproyect.Queries.getAlumnos;
 import biblioproyect.Queries.select;
 import java.awt.Color;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,7 @@ public class mAlumnos extends javax.swing.JFrame {
     /**
      * Creates new form mAlumnos
      */
-    public mAlumnos() throws SQLException {
+    public mAlumnos() throws SQLException, IOException {
         initComponents();
         //getContentPane().setBackground(Color.ORANGE);
         this.setLocationRelativeTo(null);
@@ -246,8 +247,8 @@ public class mAlumnos extends javax.swing.JFrame {
             getAlumnos.getAlumnos(connection.getCon(), model);
             select.getCantAlumnos(connection.getCon(), lblCantAlum, "Info_Alumnos");
 
-        } catch (SQLException ex) {
-            Logger.getLogger(mAlumnos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(Exception e){
+            System.out.println(e);
         }
 
     }//GEN-LAST:event_btnAceptarActionPerformed
@@ -284,8 +285,8 @@ public class mAlumnos extends javax.swing.JFrame {
             public void run() {
                 try {
                     new mAlumnos().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(mAlumnos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch(Exception e){
+                    System.out.println(e);
                 }
             }
         });

@@ -10,6 +10,7 @@ import biblioproyect.Queries.getAlumnos;
 import biblioproyect.Queries.getLibros;
 import biblioproyect.Queries.select;
 import java.awt.Color;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,7 @@ public class mLibros extends javax.swing.JFrame {
     /**
      * Creates new form mLibros
      */
-    public mLibros() throws SQLException {
+    public mLibros() throws SQLException, IOException {
         initComponents();
         //getContentPane().setBackground(Color.ORANGE);
         this.setLocationRelativeTo(null);
@@ -262,8 +263,8 @@ public class mLibros extends javax.swing.JFrame {
             public void run() {
                 try {
                     new mLibros().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(mLibros.class.getName()).log(Level.SEVERE, null, ex);
+                }catch(Exception e){
+                    
                 }
             }
         });

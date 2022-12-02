@@ -9,6 +9,7 @@ import biblioproyect.Queries.callProcedure;
 import biblioproyect.Queries.connection;
 import biblioproyect.Queries.getPrestamos;
 import java.awt.Color;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +24,7 @@ public class mPrestamos extends javax.swing.JFrame {
     /**
      * Creates new form mPrestamos
      */
-    public mPrestamos() throws SQLException {
+    public mPrestamos() throws SQLException, IOException {
         initComponents();
         getContentPane().setBackground(Color.ORANGE);
         this.setLocationRelativeTo(null);
@@ -319,8 +320,8 @@ public class mPrestamos extends javax.swing.JFrame {
 
                 try {
                     new mPrestamos().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(mPrestamos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch(Exception e){
+                    System.out.println(e);
                 }
 
             }
