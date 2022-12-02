@@ -5,7 +5,13 @@
  */
 package biblioproyect;
 
+import biblioproyect.Queries.connection;
+import biblioproyect.Queries.getPrestamos;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,10 +22,16 @@ public class mPrestamos extends javax.swing.JFrame {
     /**
      * Creates new form mPrestamos
      */
-    public mPrestamos() {
+    public mPrestamos() throws SQLException {
         initComponents();
         getContentPane().setBackground(Color.ORANGE);
         this.setLocationRelativeTo(null);
+        model.addColumn("ID_Prestamo");
+        model.addColumn("Num_Control");
+        model.addColumn("Fecha_Retiro");
+        model.addColumn("Fecha_Entrega");
+        model.addColumn("Num_Libro");
+        getPrestamos.getPrestamos(connection.getCon(), model);
     }
 
     /**
@@ -117,25 +129,9 @@ public class mPrestamos extends javax.swing.JFrame {
             }
         });
 
-        jTablePrestamos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Id Prestamo", "No.Control", "Fecha Retiro", "Fecha Entrega", "No.Libro"
-            }
-        ));
+        jTablePrestamos.setModel(model);
+        jTablePrestamos.setGridColor(new java.awt.Color(255, 255, 255));
+        jTablePrestamos.setShowGrid(true);
         jScrollPane3.setViewportView(jTablePrestamos);
 
         lblFechaEntrega.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
@@ -267,7 +263,12 @@ public class mPrestamos extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+        try {
+            getPrestamos.getPrestamos(connection.getCon(), model);
+        } catch (Exception e) {
+            System.out.println(e);
     }//GEN-LAST:event_btnAceptarActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -299,7 +300,11 @@ public class mPrestamos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mPrestamos().setVisible(true);
+                try {
+                    new mPrestamos().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(mPrestamos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -335,4 +340,5 @@ public class mPrestamos extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
+    DefaultTableModel model = new DefaultTableModel();
 }

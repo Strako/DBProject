@@ -5,7 +5,15 @@
  */
 package biblioproyect;
 
+import biblioproyect.Queries.connection;
+import biblioproyect.Queries.getAlumnos;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -16,10 +24,19 @@ public class mAlumnos extends javax.swing.JFrame {
     /**
      * Creates new form mAlumnos
      */
-    public mAlumnos() {
+    public mAlumnos() throws SQLException {
         initComponents();
         //getContentPane().setBackground(Color.ORANGE);
         this.setLocationRelativeTo(null);
+        model.addColumn("Num_Control");
+        model.addColumn("Nombre");
+        model.addColumn("Direccion");
+        model.addColumn("Num_Tel");
+        model.addColumn("Fecha_Insc");
+        TableColumnModel tcm = jTableAlumnos.getColumnModel();
+        getAlumnos.getAlumnos(connection.getCon(), model);
+
+
     }
 
     /**
@@ -102,25 +119,9 @@ public class mAlumnos extends javax.swing.JFrame {
         });
 
         jTableAlumnos.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        jTableAlumnos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Número de Control", "Nombre", "Dirección", "Teléfono", "Fecha de Inscripción"
-            }
-        ));
+        jTableAlumnos.setModel(model);
+        jTableAlumnos.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableAlumnos.setShowGrid(true);
         jScrollPaneAlumnos.setViewportView(jTableAlumnos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -226,7 +227,13 @@ public class mAlumnos extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxAlumnosActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            getAlumnos.getAlumnos(connection.getCon(), model);
+        } catch (SQLException ex) {
+            Logger.getLogger(mAlumnos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
@@ -259,7 +266,11 @@ public class mAlumnos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mAlumnos().setVisible(true);
+                try {
+                    new mAlumnos().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(mAlumnos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -285,4 +296,6 @@ public class mAlumnos extends javax.swing.JFrame {
     private javax.swing.JTextField txtNumeroControl;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
+    DefaultTableModel model = new DefaultTableModel(); 
+
 }

@@ -5,7 +5,15 @@
  */
 package biblioproyect;
 
+import biblioproyect.Queries.connection;
+import biblioproyect.Queries.getAlumnos;
+import biblioproyect.Queries.getLibros;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -16,10 +24,16 @@ public class mLibros extends javax.swing.JFrame {
     /**
      * Creates new form mLibros
      */
-    public mLibros() {
+    public mLibros() throws SQLException {
         initComponents();
         //getContentPane().setBackground(Color.ORANGE);
         this.setLocationRelativeTo(null);
+        model.addColumn("Num_Libro");
+        model.addColumn("Titulo");
+        model.addColumn("Autor");
+        model.addColumn("Fecha_Editado");
+        getLibros.getLibros(connection.getCon(), model);
+
     }
 
     /**
@@ -64,25 +78,9 @@ public class mLibros extends javax.swing.JFrame {
             }
         });
 
-        jTableLibros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Número de Libro", "Titulo", "Autor", "Telefono", "Fecha de Editado"
-            }
-        ));
+        jTableLibros.setModel(model);
+        jTableLibros.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableLibros.setShowGrid(true);
         jScrollPane2.setViewportView(jTableLibros);
 
         lblTelefono.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
@@ -209,6 +207,11 @@ public class mLibros extends javax.swing.JFrame {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
+        try{
+        getLibros.getLibros(connection.getCon(), model);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
@@ -241,7 +244,11 @@ public class mLibros extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mLibros().setVisible(true);
+                try {
+                    new mLibros().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(mLibros.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -264,4 +271,5 @@ public class mLibros extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
+    DefaultTableModel model = new DefaultTableModel();
 }
