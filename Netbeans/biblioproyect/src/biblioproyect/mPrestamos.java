@@ -7,6 +7,8 @@ package biblioproyect;
 
 import biblioproyect.Queries.callProcedure;
 import biblioproyect.Queries.connection;
+import biblioproyect.Queries.cudAlumno;
+import biblioproyect.Queries.cudPrestamos;
 import biblioproyect.Queries.getPrestamos;
 import java.awt.Color;
 import java.io.IOException;
@@ -66,7 +68,7 @@ public class mPrestamos extends javax.swing.JFrame {
         txtIdPrestamo = new javax.swing.JTextField();
         lblNoControl = new javax.swing.JLabel();
         lblIdPrestamo = new javax.swing.JLabel();
-        jComboBoxAlumnos1 = new javax.swing.JComboBox<>();
+        dropdown = new javax.swing.JComboBox<>();
         txtFechaEntrega = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTablePrestamos = new javax.swing.JTable();
@@ -125,11 +127,11 @@ public class mPrestamos extends javax.swing.JFrame {
         lblIdPrestamo.setForeground(new java.awt.Color(255, 255, 255));
         lblIdPrestamo.setText("Id Prestamo");
 
-        jComboBoxAlumnos1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        jComboBoxAlumnos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Agregar", "Actualizar", "Eliminar" }));
-        jComboBoxAlumnos1.addActionListener(new java.awt.event.ActionListener() {
+        dropdown.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        dropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Agregar", "Actualizar", "Eliminar" }));
+        dropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxAlumnos1ActionPerformed(evt);
+                dropdownActionPerformed(evt);
             }
         });
 
@@ -178,7 +180,7 @@ public class mPrestamos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxAlumnos1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(591, 591, 591)
@@ -216,7 +218,7 @@ public class mPrestamos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBoxAlumnos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegresar)
@@ -268,9 +270,9 @@ public class mPrestamos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxAlumnosActionPerformed
 
-    private void jComboBoxAlumnos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAlumnos1ActionPerformed
+    private void dropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxAlumnos1ActionPerformed
+    }//GEN-LAST:event_dropdownActionPerformed
 
     private void txtIdPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdPrestamoActionPerformed
         // TODO add your handling code here:
@@ -279,6 +281,22 @@ public class mPrestamos extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         try {
+            switch (dropdown.getSelectedIndex()) {
+                case 1: {
+                    cudPrestamos.insertPrestamos(connection.getCon(),txtNoControl.getText(), txtFechaRetiro.getText(), txtFechaEntrega.getText(), txtNoLibro.getText());
+                    break;
+                }
+                case 2: {
+                    cudPrestamos.updatePrestamos(connection.getCon(), txtNoControl.getText(), txtFechaRetiro.getText(), txtFechaEntrega.getText(), txtNoLibro.getText(), txtIdPrestamo.getText());
+
+                    break;
+                }
+                case 3: {
+                    cudPrestamos.deletePrestamos(connection.getCon(), txtIdPrestamo.getText());
+
+                    break;
+                }
+            }
             getPrestamos.getPrestamos(connection.getCon(), model);
             callProcedure.call(connection.getCon(), lblCantPres, "CantPrestamos");
 
@@ -320,7 +338,7 @@ public class mPrestamos extends javax.swing.JFrame {
 
                 try {
                     new mPrestamos().setVisible(true);
-                } catch(Exception e){
+                } catch (Exception e) {
                     System.out.println(e);
                 }
 
@@ -331,8 +349,8 @@ public class mPrestamos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.JComboBox<String> dropdown;
     private javax.swing.JComboBox<String> jComboBoxAlumnos;
-    private javax.swing.JComboBox<String> jComboBoxAlumnos1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

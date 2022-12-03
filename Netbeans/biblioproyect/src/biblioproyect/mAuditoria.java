@@ -5,6 +5,15 @@
  */
 package biblioproyect;
 
+import biblioproyect.Queries.connection;
+import biblioproyect.Queries.getAlumnos;
+import biblioproyect.Queries.getLogs;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Hp Omen
@@ -14,8 +23,12 @@ public class mAuditoria extends javax.swing.JFrame {
     /**
      * Creates new form mAuditoria
      */
-    public mAuditoria() {
+    public mAuditoria() throws IOException, SQLException {
         initComponents();
+        model.addColumn("Id Log");
+        model.addColumn("Usuario");
+        model.addColumn("Log");
+        getLogs.getLogs(connection.getCon(), model);
     }
 
     /**
@@ -37,18 +50,8 @@ public class mAuditoria extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
-        jTableAuditoria.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "ID_Log", "Log"
-            }
-        ));
+        jTableAuditoria.setModel(model);
+        jTableAuditoria.setShowGrid(true);
         jScrollPane1.setViewportView(jTableAuditoria);
 
         jLabel1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
@@ -139,7 +142,13 @@ public class mAuditoria extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mAuditoria().setVisible(true);
+                try {
+                    new mAuditoria().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(mAuditoria.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(mAuditoria.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -151,4 +160,5 @@ public class mAuditoria extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAuditoria;
     // End of variables declaration//GEN-END:variables
+    DefaultTableModel model = new DefaultTableModel();
 }

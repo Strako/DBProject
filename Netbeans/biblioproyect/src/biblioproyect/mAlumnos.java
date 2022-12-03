@@ -6,6 +6,7 @@
 package biblioproyect;
 
 import biblioproyect.Queries.connection;
+import biblioproyect.Queries.cudAlumno;
 import biblioproyect.Queries.getAlumnos;
 import biblioproyect.Queries.select;
 import java.awt.Color;
@@ -35,7 +36,6 @@ public class mAlumnos extends javax.swing.JFrame {
         model.addColumn("Direccion");
         model.addColumn("Num_Tel");
         model.addColumn("Fecha_Insc");
-        TableColumnModel tcm = jTableAlumnos.getColumnModel();
         getAlumnos.getAlumnos(connection.getCon(), model);
         select.getCantAlumnos(connection.getCon(), lblCantAlum, "Info_Alumnos");
 
@@ -54,7 +54,7 @@ public class mAlumnos extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jComboBoxAlumnos = new javax.swing.JComboBox<>();
+        dropdown = new javax.swing.JComboBox<>();
         txtNombre = new javax.swing.JTextField();
         txtNumeroControl = new javax.swing.JTextField();
         lblNumeroControl = new javax.swing.JLabel();
@@ -77,11 +77,11 @@ public class mAlumnos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
-        jComboBoxAlumnos.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        jComboBoxAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Agregar", "Actualizar", "Eliminar" }));
-        jComboBoxAlumnos.addActionListener(new java.awt.event.ActionListener() {
+        dropdown.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        dropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Agregar", "Actualizar", "Eliminar" }));
+        dropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxAlumnosActionPerformed(evt);
+                dropdownActionPerformed(evt);
             }
         });
 
@@ -139,7 +139,7 @@ public class mAlumnos extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegresar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -177,7 +177,7 @@ public class mAlumnos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegresar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -237,17 +237,33 @@ public class mAlumnos extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void jComboBoxAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAlumnosActionPerformed
+    private void dropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxAlumnosActionPerformed
+    }//GEN-LAST:event_dropdownActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         try {
             // TODO add your handling code here:
+            switch (dropdown.getSelectedIndex()) {
+                case 1: {
+                    cudAlumno.insertAlumno(connection.getCon(), txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText(), txtFechaInscripcion.getText());
+                    break;
+                }
+                case 2: {
+                    cudAlumno.updateAlumno(connection.getCon(), txtNombre.getText(), txtDireccion.getText(), txtTelefono.getText(), txtFechaInscripcion.getText(), txtNumeroControl.getText());
+
+                    break;
+                }
+                case 3: {
+                    cudAlumno.deleteAlumno(connection.getCon(), txtNumeroControl.getText());
+
+                    break;
+                }
+            }
             getAlumnos.getAlumnos(connection.getCon(), model);
             select.getCantAlumnos(connection.getCon(), lblCantAlum, "Info_Alumnos");
 
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
 
@@ -285,7 +301,7 @@ public class mAlumnos extends javax.swing.JFrame {
             public void run() {
                 try {
                     new mAlumnos().setVisible(true);
-                } catch(Exception e){
+                } catch (Exception e) {
                     System.out.println(e);
                 }
             }
@@ -295,7 +311,7 @@ public class mAlumnos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JComboBox<String> jComboBoxAlumnos;
+    private javax.swing.JComboBox<String> dropdown;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;

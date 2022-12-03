@@ -6,6 +6,8 @@
 package biblioproyect;
 
 import biblioproyect.Queries.connection;
+import biblioproyect.Queries.cudAlumno;
+import biblioproyect.Queries.cudLibros;
 import biblioproyect.Queries.getAlumnos;
 import biblioproyect.Queries.getLibros;
 import biblioproyect.Queries.select;
@@ -50,7 +52,7 @@ public class mLibros extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        jComboBoxAlumnos = new javax.swing.JComboBox<>();
+        dropdown = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableLibros = new javax.swing.JTable();
         lblTelefono = new javax.swing.JLabel();
@@ -74,11 +76,11 @@ public class mLibros extends javax.swing.JFrame {
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Titulo");
 
-        jComboBoxAlumnos.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
-        jComboBoxAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Agregar", "Actualizar", "Eliminar" }));
-        jComboBoxAlumnos.addActionListener(new java.awt.event.ActionListener() {
+        dropdown.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 12)); // NOI18N
+        dropdown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Agregar", "Actualizar", "Eliminar" }));
+        dropdown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxAlumnosActionPerformed(evt);
+                dropdownActionPerformed(evt);
             }
         });
 
@@ -129,7 +131,7 @@ public class mLibros extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRegresar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -168,7 +170,7 @@ public class mLibros extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jComboBoxAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dropdown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegresar)
@@ -212,13 +214,29 @@ public class mLibros extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void jComboBoxAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxAlumnosActionPerformed
+    private void dropdownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdownActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxAlumnosActionPerformed
+    }//GEN-LAST:event_dropdownActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
         try {
+            switch (dropdown.getSelectedIndex()) {
+                case 1: {
+                    cudLibros.insertLibros(connection.getCon(), txtTitulo.getText(), txtAutor.getText(), txtFechaEditado.getText());
+                    break;
+                }
+                case 2: {
+                    cudLibros.updateLibros(connection.getCon(), txtTitulo.getText(), txtAutor.getText(), txtFechaEditado.getText(), txtNumeroLibro.getText());
+
+                    break;
+                }
+                case 3: {
+                    cudLibros.deleteLibros(connection.getCon(), txtNumeroLibro.getText());
+
+                    break;
+                }
+            }
             getLibros.getLibros(connection.getCon(), model);
             select.getCantAlumnos(connection.getCon(), lblCantLib, "Info_Libros");
 
@@ -259,8 +277,8 @@ public class mLibros extends javax.swing.JFrame {
             public void run() {
                 try {
                     new mLibros().setVisible(true);
-                }catch(Exception e){
-                    
+                } catch (Exception e) {
+
                 }
             }
         });
@@ -269,7 +287,7 @@ public class mLibros extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JComboBox<String> jComboBoxAlumnos;
+    private javax.swing.JComboBox<String> dropdown;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableLibros;
